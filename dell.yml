@@ -1,5 +1,6 @@
 ---
 - name: Enable SNMP and set ntp on Dell iDRAC server
+  hosts: all
   gather_facts: no
 
   tasks:
