@@ -1,0 +1,18 @@
+---
+- name: Enable SNMP and set ntp on Dell iDRAC server
+  hosts: idrac_servers
+  gather_facts: no
+
+  tasks:
+  - name: Configure iDRAC attributes
+    dellemc.openmanage.idrac_attributes:
+      idrac_ip: "10.9.10.86"
+      idrac_user: "root"
+      idrac_password: "calvin"
+      validate_certs: false
+      idrac_attributes:
+        SNMP.1.AgentEnable: Enabled
+        SNMP.1.AgentCommunity: public
+        NTPConfigGroup.1.NTPEnable: Enabled
+        NTPConfigGroup.1.NTP1: clock.corp.redhat.com
+    delegate_to: localhost
